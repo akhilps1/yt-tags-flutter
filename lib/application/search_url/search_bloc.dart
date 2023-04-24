@@ -24,7 +24,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
         isLoading: false,
         isValidUrl: event.searchUrl.value.fold(
           (failure) => some(left(failure)),
-          (r) => none(),
+          (unit) => none(),
         ),
         items: SearchResponse(items: []),
         url: event.searchUrl,

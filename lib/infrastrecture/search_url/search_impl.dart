@@ -14,7 +14,6 @@ class SearchImpl implements ISearchFacade {
   @override
   Future<Either<SearchFailure, SearchResponse>> getVideoDetails(
       {required String videoId}) async {
-    log(videoId);
     try {
       final Response response = await Dio(BaseOptions())
           .get('${ApiEndPoints.search}id=$videoId&key=$API_KEY');
