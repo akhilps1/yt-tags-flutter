@@ -23,7 +23,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
       emit(state.copyWith(
         isLoading: false,
         isValidUrl: event.searchUrl.value.fold(
-          (l) => some(left(l)),
+          (failure) => some(left(failure)),
           (r) => none(),
         ),
         items: SearchResponse(items: []),
