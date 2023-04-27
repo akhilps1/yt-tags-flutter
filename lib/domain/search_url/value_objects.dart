@@ -10,7 +10,7 @@ class SearchUrl extends ValueObject<String> {
   final Either<ValueFailure<String>, String> value;
 
   factory SearchUrl(String value) {
-    return SearchUrl._(validateVideoUrl(value));
+    return SearchUrl._(validateVideoUrl(value.trim()));
   }
 
   const SearchUrl._(

@@ -9,6 +9,8 @@ abstract class ValueObject<T> extends Equatable {
 
   Either<ValueFailure<String>, String> get value;
 
+  bool isValid() => value.isRight();
+
   @override
   List<Object> get props => [value];
 

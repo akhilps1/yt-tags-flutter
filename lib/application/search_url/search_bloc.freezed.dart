@@ -16,44 +16,42 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$SearchEvent {
-  Object get searchUrl => throw _privateConstructorUsedError;
+  String get searchUrl => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SearchUrl searchUrl) urlChanged,
     required TResult Function(String searchUrl) searchButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SearchUrl searchUrl)? urlChanged,
     TResult? Function(String searchUrl)? searchButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SearchUrl searchUrl)? urlChanged,
     TResult Function(String searchUrl)? searchButtonClicked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UrlChangEvent value) urlChanged,
     required TResult Function(SearchButtonClickEvent value) searchButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UrlChangEvent value)? urlChanged,
     TResult? Function(SearchButtonClickEvent value)? searchButtonClicked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UrlChangEvent value)? urlChanged,
     TResult Function(SearchButtonClickEvent value)? searchButtonClicked,
     required TResult orElse(),
   }) =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $SearchEventCopyWith<SearchEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -62,6 +60,8 @@ abstract class $SearchEventCopyWith<$Res> {
   factory $SearchEventCopyWith(
           SearchEvent value, $Res Function(SearchEvent) then) =
       _$SearchEventCopyWithImpl<$Res, SearchEvent>;
+  @useResult
+  $Res call({String searchUrl});
 }
 
 /// @nodoc
@@ -73,149 +73,28 @@ class _$SearchEventCopyWithImpl<$Res, $Val extends SearchEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$UrlChangEventCopyWith<$Res> {
-  factory _$$UrlChangEventCopyWith(
-          _$UrlChangEvent value, $Res Function(_$UrlChangEvent) then) =
-      __$$UrlChangEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({SearchUrl searchUrl});
-}
-
-/// @nodoc
-class __$$UrlChangEventCopyWithImpl<$Res>
-    extends _$SearchEventCopyWithImpl<$Res, _$UrlChangEvent>
-    implements _$$UrlChangEventCopyWith<$Res> {
-  __$$UrlChangEventCopyWithImpl(
-      _$UrlChangEvent _value, $Res Function(_$UrlChangEvent) _then)
-      : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? searchUrl = null,
   }) {
-    return _then(_$UrlChangEvent(
+    return _then(_value.copyWith(
       searchUrl: null == searchUrl
           ? _value.searchUrl
           : searchUrl // ignore: cast_nullable_to_non_nullable
-              as SearchUrl,
-    ));
+              as String,
+    ) as $Val);
   }
 }
 
 /// @nodoc
-
-class _$UrlChangEvent implements UrlChangEvent {
-  const _$UrlChangEvent({required this.searchUrl});
-
-  @override
-  final SearchUrl searchUrl;
-
-  @override
-  String toString() {
-    return 'SearchEvent.urlChanged(searchUrl: $searchUrl)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UrlChangEvent &&
-            (identical(other.searchUrl, searchUrl) ||
-                other.searchUrl == searchUrl));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, searchUrl);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UrlChangEventCopyWith<_$UrlChangEvent> get copyWith =>
-      __$$UrlChangEventCopyWithImpl<_$UrlChangEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(SearchUrl searchUrl) urlChanged,
-    required TResult Function(String searchUrl) searchButtonClicked,
-  }) {
-    return urlChanged(searchUrl);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SearchUrl searchUrl)? urlChanged,
-    TResult? Function(String searchUrl)? searchButtonClicked,
-  }) {
-    return urlChanged?.call(searchUrl);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SearchUrl searchUrl)? urlChanged,
-    TResult Function(String searchUrl)? searchButtonClicked,
-    required TResult orElse(),
-  }) {
-    if (urlChanged != null) {
-      return urlChanged(searchUrl);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(UrlChangEvent value) urlChanged,
-    required TResult Function(SearchButtonClickEvent value) searchButtonClicked,
-  }) {
-    return urlChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UrlChangEvent value)? urlChanged,
-    TResult? Function(SearchButtonClickEvent value)? searchButtonClicked,
-  }) {
-    return urlChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(UrlChangEvent value)? urlChanged,
-    TResult Function(SearchButtonClickEvent value)? searchButtonClicked,
-    required TResult orElse(),
-  }) {
-    if (urlChanged != null) {
-      return urlChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class UrlChangEvent implements SearchEvent {
-  const factory UrlChangEvent({required final SearchUrl searchUrl}) =
-      _$UrlChangEvent;
-
-  @override
-  SearchUrl get searchUrl;
-  @JsonKey(ignore: true)
-  _$$UrlChangEventCopyWith<_$UrlChangEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SearchButtonClickEventCopyWith<$Res> {
+abstract class _$$SearchButtonClickEventCopyWith<$Res>
+    implements $SearchEventCopyWith<$Res> {
   factory _$$SearchButtonClickEventCopyWith(_$SearchButtonClickEvent value,
           $Res Function(_$SearchButtonClickEvent) then) =
       __$$SearchButtonClickEventCopyWithImpl<$Res>;
+  @override
   @useResult
   $Res call({String searchUrl});
 }
@@ -277,7 +156,6 @@ class _$SearchButtonClickEvent implements SearchButtonClickEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(SearchUrl searchUrl) urlChanged,
     required TResult Function(String searchUrl) searchButtonClicked,
   }) {
     return searchButtonClicked(searchUrl);
@@ -286,7 +164,6 @@ class _$SearchButtonClickEvent implements SearchButtonClickEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(SearchUrl searchUrl)? urlChanged,
     TResult? Function(String searchUrl)? searchButtonClicked,
   }) {
     return searchButtonClicked?.call(searchUrl);
@@ -295,7 +172,6 @@ class _$SearchButtonClickEvent implements SearchButtonClickEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(SearchUrl searchUrl)? urlChanged,
     TResult Function(String searchUrl)? searchButtonClicked,
     required TResult orElse(),
   }) {
@@ -308,7 +184,6 @@ class _$SearchButtonClickEvent implements SearchButtonClickEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(UrlChangEvent value) urlChanged,
     required TResult Function(SearchButtonClickEvent value) searchButtonClicked,
   }) {
     return searchButtonClicked(this);
@@ -317,7 +192,6 @@ class _$SearchButtonClickEvent implements SearchButtonClickEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(UrlChangEvent value)? urlChanged,
     TResult? Function(SearchButtonClickEvent value)? searchButtonClicked,
   }) {
     return searchButtonClicked?.call(this);
@@ -326,7 +200,6 @@ class _$SearchButtonClickEvent implements SearchButtonClickEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(UrlChangEvent value)? urlChanged,
     TResult Function(SearchButtonClickEvent value)? searchButtonClicked,
     required TResult orElse(),
   }) {
@@ -343,6 +216,7 @@ abstract class SearchButtonClickEvent implements SearchEvent {
 
   @override
   String get searchUrl;
+  @override
   @JsonKey(ignore: true)
   _$$SearchButtonClickEventCopyWith<_$SearchButtonClickEvent> get copyWith =>
       throw _privateConstructorUsedError;
@@ -351,9 +225,9 @@ abstract class SearchButtonClickEvent implements SearchEvent {
 /// @nodoc
 mixin _$SearchState {
   bool get isLoading => throw _privateConstructorUsedError;
-  Option<Either<ValueFailure, Unit>> get isValidUrl =>
+  Option<Either<InvalidUrl, Unit>> get isValidUrl =>
       throw _privateConstructorUsedError;
-  SearchResponse get items => throw _privateConstructorUsedError;
+  SearchResponse get searchResponse => throw _privateConstructorUsedError;
   SearchUrl get url => throw _privateConstructorUsedError;
   Option<Either<SearchFailure, SearchResponse>> get successOrFailure =>
       throw _privateConstructorUsedError;
@@ -371,8 +245,8 @@ abstract class $SearchStateCopyWith<$Res> {
   @useResult
   $Res call(
       {bool isLoading,
-      Option<Either<ValueFailure, Unit>> isValidUrl,
-      SearchResponse items,
+      Option<Either<InvalidUrl, Unit>> isValidUrl,
+      SearchResponse searchResponse,
       SearchUrl url,
       Option<Either<SearchFailure, SearchResponse>> successOrFailure});
 }
@@ -392,7 +266,7 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
   $Res call({
     Object? isLoading = null,
     Object? isValidUrl = null,
-    Object? items = null,
+    Object? searchResponse = null,
     Object? url = null,
     Object? successOrFailure = null,
   }) {
@@ -404,10 +278,10 @@ class _$SearchStateCopyWithImpl<$Res, $Val extends SearchState>
       isValidUrl: null == isValidUrl
           ? _value.isValidUrl
           : isValidUrl // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ValueFailure, Unit>>,
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
+              as Option<Either<InvalidUrl, Unit>>,
+      searchResponse: null == searchResponse
+          ? _value.searchResponse
+          : searchResponse // ignore: cast_nullable_to_non_nullable
               as SearchResponse,
       url: null == url
           ? _value.url
@@ -431,8 +305,8 @@ abstract class _$$_SearchStateCopyWith<$Res>
   @useResult
   $Res call(
       {bool isLoading,
-      Option<Either<ValueFailure, Unit>> isValidUrl,
-      SearchResponse items,
+      Option<Either<InvalidUrl, Unit>> isValidUrl,
+      SearchResponse searchResponse,
       SearchUrl url,
       Option<Either<SearchFailure, SearchResponse>> successOrFailure});
 }
@@ -450,7 +324,7 @@ class __$$_SearchStateCopyWithImpl<$Res>
   $Res call({
     Object? isLoading = null,
     Object? isValidUrl = null,
-    Object? items = null,
+    Object? searchResponse = null,
     Object? url = null,
     Object? successOrFailure = null,
   }) {
@@ -462,10 +336,10 @@ class __$$_SearchStateCopyWithImpl<$Res>
       isValidUrl: null == isValidUrl
           ? _value.isValidUrl
           : isValidUrl // ignore: cast_nullable_to_non_nullable
-              as Option<Either<ValueFailure, Unit>>,
-      items: null == items
-          ? _value.items
-          : items // ignore: cast_nullable_to_non_nullable
+              as Option<Either<InvalidUrl, Unit>>,
+      searchResponse: null == searchResponse
+          ? _value.searchResponse
+          : searchResponse // ignore: cast_nullable_to_non_nullable
               as SearchResponse,
       url: null == url
           ? _value.url
@@ -485,16 +359,16 @@ class _$_SearchState implements _SearchState {
   const _$_SearchState(
       {required this.isLoading,
       required this.isValidUrl,
-      required this.items,
+      required this.searchResponse,
       required this.url,
       required this.successOrFailure});
 
   @override
   final bool isLoading;
   @override
-  final Option<Either<ValueFailure, Unit>> isValidUrl;
+  final Option<Either<InvalidUrl, Unit>> isValidUrl;
   @override
-  final SearchResponse items;
+  final SearchResponse searchResponse;
   @override
   final SearchUrl url;
   @override
@@ -502,7 +376,7 @@ class _$_SearchState implements _SearchState {
 
   @override
   String toString() {
-    return 'SearchState(isLoading: $isLoading, isValidUrl: $isValidUrl, items: $items, url: $url, successOrFailure: $successOrFailure)';
+    return 'SearchState(isLoading: $isLoading, isValidUrl: $isValidUrl, searchResponse: $searchResponse, url: $url, successOrFailure: $successOrFailure)';
   }
 
   @override
@@ -514,15 +388,16 @@ class _$_SearchState implements _SearchState {
                 other.isLoading == isLoading) &&
             (identical(other.isValidUrl, isValidUrl) ||
                 other.isValidUrl == isValidUrl) &&
-            (identical(other.items, items) || other.items == items) &&
+            (identical(other.searchResponse, searchResponse) ||
+                other.searchResponse == searchResponse) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.successOrFailure, successOrFailure) ||
                 other.successOrFailure == successOrFailure));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isLoading, isValidUrl, items, url, successOrFailure);
+  int get hashCode => Object.hash(runtimeType, isLoading, isValidUrl,
+      searchResponse, url, successOrFailure);
 
   @JsonKey(ignore: true)
   @override
@@ -534,8 +409,8 @@ class _$_SearchState implements _SearchState {
 abstract class _SearchState implements SearchState {
   const factory _SearchState(
       {required final bool isLoading,
-      required final Option<Either<ValueFailure, Unit>> isValidUrl,
-      required final SearchResponse items,
+      required final Option<Either<InvalidUrl, Unit>> isValidUrl,
+      required final SearchResponse searchResponse,
       required final SearchUrl url,
       required final Option<Either<SearchFailure, SearchResponse>>
           successOrFailure}) = _$_SearchState;
@@ -543,9 +418,9 @@ abstract class _SearchState implements SearchState {
   @override
   bool get isLoading;
   @override
-  Option<Either<ValueFailure, Unit>> get isValidUrl;
+  Option<Either<InvalidUrl, Unit>> get isValidUrl;
   @override
-  SearchResponse get items;
+  SearchResponse get searchResponse;
   @override
   SearchUrl get url;
   @override

@@ -4,8 +4,8 @@ part 'search_response.g.dart';
 
 @JsonSerializable()
 class SearchResponse {
-  @JsonKey(name: "items")
-  List<Item>? items;
+  @JsonKey(name: 'items')
+  List<Items>? items;
 
   SearchResponse({this.items});
 
@@ -20,53 +20,30 @@ class SearchResponse {
 }
 
 @JsonSerializable()
-class Maxres {
-  @JsonKey(name: "url")
-  String? url;
-  @JsonKey(name: "width")
-  int? width;
-  @JsonKey(name: "height")
-  int? height;
+class Items {
+  @JsonKey(name: 'snippet')
+  Snippet? snippet;
 
-  Maxres({this.url, this.width, this.height});
+  Items({this.snippet});
 
   @override
-  String toString() => 'Maxres(url: $url, width: $width, height: $height)';
+  String toString() => 'Items(snippet: $snippet)';
 
-  factory Maxres.fromJson(Map<String, dynamic> json) {
-    return _$MaxresFromJson(json);
-  }
+  factory Items.fromJson(Map<String, dynamic> json) => _$ItemsFromJson(json);
 
-  Map<String, dynamic> toJson() => _$MaxresToJson(this);
-}
-
-@JsonSerializable()
-class Thumbnails {
-  @JsonKey(name: "maxres")
-  Maxres? maxres;
-
-  Thumbnails({this.maxres});
-
-  @override
-  String toString() => 'Thumbnails(maxres: $maxres)';
-
-  factory Thumbnails.fromJson(Map<String, dynamic> json) {
-    return _$ThumbnailsFromJson(json);
-  }
-
-  Map<String, dynamic> toJson() => _$ThumbnailsToJson(this);
+  Map<String, dynamic> toJson() => _$ItemsToJson(this);
 }
 
 @JsonSerializable()
 class Snippet {
-  @JsonKey(name: "title")
+  @JsonKey(name: 'title')
   String? title;
-  @JsonKey(name: "description")
+  @JsonKey(name: 'description')
   String? description;
-  @JsonKey(name: "thumbnails")
+  @JsonKey(name: 'thumbnails')
   Thumbnails? thumbnails;
-  @JsonKey(name: "tags")
-  List<dynamic>? tags;
+  @JsonKey(name: 'tags')
+  List<String>? tags;
 
   Snippet({this.title, this.description, this.thumbnails, this.tags});
 
@@ -83,18 +60,35 @@ class Snippet {
 }
 
 @JsonSerializable()
-class Item {
-  @JsonKey(name: "id")
-  String? id;
-  @JsonKey(name: "snippet")
-  Snippet? snippet;
+class Thumbnails {
+  @JsonKey(name: 'maxres')
+  Maxres? maxres;
 
-  Item({this.id, this.snippet});
+  Thumbnails({this.maxres});
 
   @override
-  String toString() => 'Item(id: $id, snippet: $snippet)';
+  String toString() => 'Thumbnails(maxres: $maxres)';
 
-  factory Item.fromJson(Map<String, dynamic> json) => _$ItemFromJson(json);
+  factory Thumbnails.fromJson(Map<String, dynamic> json) {
+    return _$ThumbnailsFromJson(json);
+  }
 
-  Map<String, dynamic> toJson() => _$ItemToJson(this);
+  Map<String, dynamic> toJson() => _$ThumbnailsToJson(this);
+}
+
+@JsonSerializable()
+class Maxres {
+  @JsonKey(name: 'url')
+  String? url;
+
+  Maxres({this.url});
+
+  @override
+  String toString() => 'Maxres(url: $url)';
+
+  factory Maxres.fromJson(Map<String, dynamic> json) {
+    return _$MaxresFromJson(json);
+  }
+
+  Map<String, dynamic> toJson() => _$MaxresToJson(this);
 }

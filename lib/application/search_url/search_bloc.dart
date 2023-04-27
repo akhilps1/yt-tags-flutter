@@ -19,39 +19,35 @@ part 'search_bloc.freezed.dart';
 class SearchBloc extends Bloc<SearchEvent, SearchState> {
   final ISearchFacade _iSearchFacade;
   SearchBloc(this._iSearchFacade) : super(SearchState.initial()) {
-    on<UrlChangEvent>((event, emit) {
-      emit(state.copyWith(
-        isLoading: false,
-        isValidUrl: event.searchUrl.value.fold(
-          (failure) => some(left(failure)),
-          (unit) => none(),
-        ),
-        items: SearchResponse(items: []),
-        url: event.searchUrl,
-        successOrFailure: none(),
-      ));
-    });
-
     on<SearchButtonClickEvent>((event, emit) async {
+      emit(
+        state.copyWith(
+          isLoading: true,
+          successOrFailure: none(),
+        ),
+      );
       final Either<SearchFailure, SearchResponse> result =
           await _iSearchFacade.getVideoDetails(videoId: event.searchUrl);
+      log(result.toString());
+
       emit(
         result.fold(
-            (failure) => state.copyWith(
-                  isLoading: false,
-                  successOrFailure: option(
-                    true,
-                    Left(failure),
-                  ),
-                  items: SearchResponse(items: []),
-                ), (success) {
-          log(success.toString());
-          return state.copyWith(
+          (l) => state.copyWith(
             isLoading: false,
-            successOrFailure: none(),
-            items: success,
-          );
-        }),
+            successOrFailure: some(
+              Left(l),
+            ),
+            url: SearchUrl(''),
+          ),
+          (r) => state.copyWith(
+            isLoading: false,
+            successOrFailure: some(
+              Right(r),
+            ),
+            url: SearchUrl(''),
+            searchResponse: r,
+          ),
+        ),
       );
     });
   }

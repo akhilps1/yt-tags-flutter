@@ -9,7 +9,7 @@ part of 'search_response.dart';
 SearchResponse _$SearchResponseFromJson(Map<String, dynamic> json) =>
     SearchResponse(
       items: (json['items'] as List<dynamic>?)
-          ?.map((e) => Item.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => Items.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
@@ -18,16 +18,30 @@ Map<String, dynamic> _$SearchResponseToJson(SearchResponse instance) =>
       'items': instance.items,
     };
 
-Maxres _$MaxresFromJson(Map<String, dynamic> json) => Maxres(
-      url: json['url'] as String?,
-      width: json['width'] as int?,
-      height: json['height'] as int?,
+Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
+      snippet: json['snippet'] == null
+          ? null
+          : Snippet.fromJson(json['snippet'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$MaxresToJson(Maxres instance) => <String, dynamic>{
-      'url': instance.url,
-      'width': instance.width,
-      'height': instance.height,
+Map<String, dynamic> _$ItemsToJson(Items instance) => <String, dynamic>{
+      'snippet': instance.snippet,
+    };
+
+Snippet _$SnippetFromJson(Map<String, dynamic> json) => Snippet(
+      title: json['title'] as String?,
+      description: json['description'] as String?,
+      thumbnails: json['thumbnails'] == null
+          ? null
+          : Thumbnails.fromJson(json['thumbnails'] as Map<String, dynamic>),
+      tags: (json['tags'] as List<dynamic>?)?.map((e) => e as String).toList(),
+    );
+
+Map<String, dynamic> _$SnippetToJson(Snippet instance) => <String, dynamic>{
+      'title': instance.title,
+      'description': instance.description,
+      'thumbnails': instance.thumbnails,
+      'tags': instance.tags,
     };
 
 Thumbnails _$ThumbnailsFromJson(Map<String, dynamic> json) => Thumbnails(
@@ -41,30 +55,10 @@ Map<String, dynamic> _$ThumbnailsToJson(Thumbnails instance) =>
       'maxres': instance.maxres,
     };
 
-Snippet _$SnippetFromJson(Map<String, dynamic> json) => Snippet(
-      title: json['title'] as String?,
-      description: json['description'] as String?,
-      thumbnails: json['thumbnails'] == null
-          ? null
-          : Thumbnails.fromJson(json['thumbnails'] as Map<String, dynamic>),
-      tags: json['tags'] as List<dynamic>?,
+Maxres _$MaxresFromJson(Map<String, dynamic> json) => Maxres(
+      url: json['url'] as String?,
     );
 
-Map<String, dynamic> _$SnippetToJson(Snippet instance) => <String, dynamic>{
-      'title': instance.title,
-      'description': instance.description,
-      'thumbnails': instance.thumbnails,
-      'tags': instance.tags,
-    };
-
-Item _$ItemFromJson(Map<String, dynamic> json) => Item(
-      id: json['id'] as String?,
-      snippet: json['snippet'] == null
-          ? null
-          : Snippet.fromJson(json['snippet'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$ItemToJson(Item instance) => <String, dynamic>{
-      'id': instance.id,
-      'snippet': instance.snippet,
+Map<String, dynamic> _$MaxresToJson(Maxres instance) => <String, dynamic>{
+      'url': instance.url,
     };

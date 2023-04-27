@@ -1,0 +1,113 @@
+import 'package:clipboard/clipboard.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tags/application/search_url/search_bloc.dart';
+import 'package:tags/domain/search_url/value_objects.dart';
+
+class SearchBox extends StatelessWidget {
+  const SearchBox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final TextEditingController controller = TextEditingController();
+    FlutterClipboard.paste().then((value) {
+      controller.text = value;
+    });
+    final Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      width: size.width,
+      child: Card(
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+        color: Colors.white,
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(right: 20, left: 20),
+              child: BlocBuilder<SearchBloc, SearchState>(
+                builder: (context, state) {
+                  return BlocBuilder<SearchBloc, SearchState>(
+                    builder: (context, state) {
+                      return Row(
+                        children: [
+                          state.isLoading == true
+                              ? SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.grey[700],
+                                    strokeWidth: 3,
+                                  ),
+                                )
+                              : SizedBox(
+                                  height: 30,
+                                  width: 30,
+                                  child: Icon(
+                                    Icons.menu,
+                                    size: 28,
+                                    color: Colors.grey[700],
+                                  ),
+                                ),
+                        ],
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+            Expanded(
+              child: TextField(
+                controller: controller,
+                onChanged: (value) async {},
+                style: const TextStyle(
+                  fontSize: 18,
+                ),
+                decoration: const InputDecoration(
+                  hintText: 'Enter Video URL',
+                  border: InputBorder.none,
+                  hintStyle: TextStyle(
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              child: IconButton(
+                onPressed: () async {
+                  FocusScopeNode currentFocus = FocusScope.of(context);
+                  if (!currentFocus.hasPrimaryFocus) {
+                    currentFocus.unfocus();
+                  }
+                  // get videoid
+                  final SearchUrl url = SearchUrl(controller.text);
+                  url.value.fold(
+                    (falure) {
+                      _showSnackBar(context);
+                    },
+                    (videoId) {
+                      context.read<SearchBloc>().add(
+                            SearchButtonClickEvent(searchUrl: videoId),
+                          );
+                    },
+                  );
+                },
+                icon: Icon(
+                  Icons.search,
+                  color: Colors.grey[700],
+                  size: 28,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showSnackBar(BuildContext context) {
+    const snackBar = SnackBar(
+      content: Text("Enter a valid youtube video URL"),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
+}

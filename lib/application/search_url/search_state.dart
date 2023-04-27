@@ -4,8 +4,8 @@ part of 'search_bloc.dart';
 class SearchState with _$SearchState {
   const factory SearchState({
     required bool isLoading,
-    required Option<Either<ValueFailure, Unit>> isValidUrl,
-    required SearchResponse items,
+    required Option<Either<InvalidUrl, Unit>> isValidUrl,
+    required SearchResponse searchResponse,
     required SearchUrl url,
     required Option<Either<SearchFailure, SearchResponse>> successOrFailure,
   }) = _SearchState;
@@ -13,7 +13,7 @@ class SearchState with _$SearchState {
   factory SearchState.initial() => SearchState(
         isLoading: false,
         isValidUrl: none(),
-        items: SearchResponse(items: []),
+        searchResponse: SearchResponse(),
         url: SearchUrl(''),
         successOrFailure: none(),
       );
