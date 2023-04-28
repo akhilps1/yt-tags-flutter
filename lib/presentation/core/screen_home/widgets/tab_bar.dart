@@ -1,65 +1,99 @@
-import 'dart:developer';
-
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tags/application/search_url/search_bloc.dart';
 
-import '../../../../domain/search_url/models/search_response/search_response.dart';
+import 'package:tags/application/core/constants.dart';
+import 'package:tags/application/search_url/search_bloc.dart';
 
 class TabBarWidget extends StatelessWidget {
   const TabBarWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const TabBarView(
-      children: <Widget>[
-        TagsView(),
-        DescriptionView(),
-        ThumbnailView(),
-      ],
+    return BlocBuilder<SearchBloc, SearchState>(
+      builder: (context, state) {
+        List<String> tags = [];
+        String description = '';
+        String thumbnailUrl = '';
+        String title = '';
+
+        state.successOrFailure.fold(() {}, (responseOrFailure) {
+          responseOrFailure.fold((l) {}, (r) {
+            if (r.items!.isNotEmpty && r.items != null) {
+              tags = r.items!.single.snippet.tags ?? [];
+              description = r.items!.single.snippet.description ?? '';
+              thumbnailUrl =
+                  r.items!.single.snippet.thumbnails.maxres.url ?? '';
+
+              title = r.items!.single.snippet.title ?? '';
+            }
+          });
+        });
+        return TabBarView(
+          children: <Widget>[
+            TagsView(
+              tags: tags,
+            ),
+            DescriptionView(
+              description: description,
+            ),
+            ThumbnailView(
+              thumbnailUrl: thumbnailUrl,
+              title: title,
+            ),
+          ],
+        );
+      },
     );
   }
 }
 
+// Tags View
 class TagsView extends StatelessWidget {
-  const TagsView({super.key});
+  const TagsView({
+    Key? key,
+    required this.tags,
+  }) : super(key: key);
+  final List tags;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BlocBuilder<SearchBloc, SearchState>(
-          builder: (context, state) {
-            List tags = [];
-            state.successOrFailure.fold(() {}, (responseOrFailure) {
-              responseOrFailure.fold((l) {}, (r) {
-                log(r.toString());
-                if (r.items != null) {
-                  tags.addAll(r.items!.single.snippet!.tags ?? []);
-                }
-              });
-            });
-
-            return ListView.builder(
-              itemCount: tags.length,
-              itemBuilder: (BuildContext context, int index) {
-                final tag = tags[index];
-                return Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(15),
-                    child: Text(tag.toString()),
-                  ),
-                );
-              },
-            );
-          },
-        ),
+        tags.isNotEmpty
+            ? ListView.builder(
+                itemCount: tags.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final tag = tags[index];
+                  return Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: Text(
+                        tag,
+                        style: const TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  );
+                },
+              )
+            : ksizedBox,
         Positioned(
           right: 16,
           bottom: 16,
           child: SizedBox(
             child: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                if (tags.isEmpty) {
+                  _showSnackBar(context, 'No tags fount');
+                } else {
+                  String tag = tags.toString();
+
+                  FlutterClipboard.copy(tag.substring(1, tag.length - 1));
+                  _showSnackBar(context, 'Tags copyed');
+                }
+              },
               child: const Icon(Icons.copy),
             ),
           ),
@@ -77,31 +111,44 @@ class TagsView extends StatelessWidget {
 }
 
 class DescriptionView extends StatelessWidget {
-  const DescriptionView({super.key});
+  const DescriptionView({
+    Key? key,
+    required this.description,
+  }) : super(key: key);
+  final String description;
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        BlocBuilder<SearchBloc, SearchState>(
-          builder: (context, state) {
-            // final items = state.searchResponse.items;
-            // if (items == null) {}
-            final description = "";
-
-            return ListView(
-              children: [
-                Text(description.toString()),
-              ],
-            );
-          },
+        ListView(
+          children: [
+            description.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.all(10),
+                    child: Text(
+                      description.toString(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.bold),
+                    ),
+                  )
+                : ksizedBox,
+          ],
         ),
         Positioned(
           right: 16,
           bottom: 16,
           child: SizedBox(
             child: FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                if (description.isEmpty) {
+                  _showSnackBar(context, 'Description not fount');
+                } else {
+                  FlutterClipboard.copy(description);
+                  _showSnackBar(context, 'Description copyed');
+                }
+              },
               child: const Icon(Icons.copy),
             ),
           ),
@@ -109,46 +156,79 @@ class DescriptionView extends StatelessWidget {
       ],
     );
   }
+
+  void _showSnackBar(BuildContext context, String msg) {
+    final snackBar = SnackBar(
+      content: Text(msg),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  }
 }
 
 class ThumbnailView extends StatelessWidget {
-  const ThumbnailView({super.key});
+  const ThumbnailView({
+    Key? key,
+    required this.thumbnailUrl,
+    required this.title,
+  }) : super(key: key);
+  final String thumbnailUrl;
+  final String title;
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
     return Stack(
       children: [
-        BlocBuilder<SearchBloc, SearchState>(
-          builder: (context, state) {
-            // final items = state.searchResponse.items;
-            // if (items == null) {}
-            final thumbnail = "abcd";
-
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                // SizedBox(
-                //   height: 250,
-                //   child: Image.network(
-                //     "",
-                //     fit: BoxFit.cover,
-                //   ),
-                // )
-              ],
-            );
-          },
+        Positioned(
+          top: 50,
+          right: 5,
+          left: 5,
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            thumbnailUrl.isNotEmpty
+                ? Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: SizedBox(
+                      child: Image.network(
+                        thumbnailUrl,
+                        height: 200,
+                        width: size.width - 10,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : ksizedBox,
+          ],
         ),
         Positioned(
           right: 16,
           bottom: 16,
           child: SizedBox(
             child: FloatingActionButton(
-              onPressed: () {},
-              child: const Icon(Icons.copy),
+              onPressed: () {
+                if (thumbnailUrl.isEmpty) {
+                  _showSnackBar(context, 'Thumbnail not fount');
+                } else {}
+              },
+              child: const Icon(Icons.download),
             ),
           ),
         )
       ],
     );
+  }
+
+  void _showSnackBar(BuildContext context, String msg) {
+    final snackBar = SnackBar(
+      content: Text(msg),
+    );
+    ScaffoldMessenger.of(context).showSnackBar(snackBar);
   }
 }

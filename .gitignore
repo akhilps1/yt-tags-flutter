@@ -45,4 +45,5 @@ app.*.map.json
 
 
 # ignore files { api_key}
-# .env
+
+.env

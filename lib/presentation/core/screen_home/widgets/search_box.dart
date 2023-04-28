@@ -4,6 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tags/application/search_url/search_bloc.dart';
 import 'package:tags/domain/search_url/value_objects.dart';
 
+import '../../../../application/core/colors.dart';
+
 class SearchBox extends StatelessWidget {
   const SearchBox({super.key});
 
@@ -18,7 +20,7 @@ class SearchBox extends StatelessWidget {
       width: size.width,
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-        color: Colors.white,
+        color: kWhite,
         child: Row(
           children: [
             Padding(
@@ -34,7 +36,7 @@ class SearchBox extends StatelessWidget {
                                   height: 20,
                                   width: 20,
                                   child: CircularProgressIndicator(
-                                    color: Colors.grey[700],
+                                    color: kGrey[700],
                                     strokeWidth: 3,
                                   ),
                                 )
@@ -44,7 +46,7 @@ class SearchBox extends StatelessWidget {
                                   child: Icon(
                                     Icons.menu,
                                     size: 28,
-                                    color: Colors.grey[700],
+                                    color: kGrey[700],
                                   ),
                                 ),
                         ],
@@ -93,7 +95,7 @@ class SearchBox extends StatelessWidget {
                 },
                 icon: Icon(
                   Icons.search,
-                  color: Colors.grey[700],
+                  color: kGrey[700],
                   size: 28,
                 ),
               ),

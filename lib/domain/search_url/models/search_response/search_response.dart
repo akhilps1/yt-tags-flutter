@@ -22,9 +22,9 @@ class SearchResponse {
 @JsonSerializable()
 class Items {
   @JsonKey(name: 'snippet')
-  Snippet? snippet;
+  Snippet snippet;
 
-  Items({this.snippet});
+  Items({required this.snippet});
 
   @override
   String toString() => 'Items(snippet: $snippet)';
@@ -39,13 +39,13 @@ class Snippet {
   @JsonKey(name: 'title')
   String? title;
   @JsonKey(name: 'description')
-  String? description;
+  String? description = "";
   @JsonKey(name: 'thumbnails')
-  Thumbnails? thumbnails;
+  Thumbnails thumbnails;
   @JsonKey(name: 'tags')
-  List<String>? tags;
+  List<String>? tags = [];
 
-  Snippet({this.title, this.description, this.thumbnails, this.tags});
+  Snippet({this.title, this.description, required this.thumbnails, this.tags});
 
   @override
   String toString() {
@@ -62,9 +62,9 @@ class Snippet {
 @JsonSerializable()
 class Thumbnails {
   @JsonKey(name: 'maxres')
-  Maxres? maxres;
+  Maxres maxres = Maxres(url: "");
 
-  Thumbnails({this.maxres});
+  Thumbnails({required this.maxres});
 
   @override
   String toString() => 'Thumbnails(maxres: $maxres)';
@@ -79,7 +79,7 @@ class Thumbnails {
 @JsonSerializable()
 class Maxres {
   @JsonKey(name: 'url')
-  String? url;
+  String? url = "";
 
   Maxres({this.url});
 

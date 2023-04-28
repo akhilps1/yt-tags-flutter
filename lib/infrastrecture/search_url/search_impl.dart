@@ -18,9 +18,11 @@ class SearchImpl implements ISearchFacade {
       final Response response = await Dio(BaseOptions()).get(
         '${ApiEndPoints.search}id=$videoId&key=${dotenv.env["API_KEY"]}',
       );
+      log(response.data.toString());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final itemsList = SearchResponse.fromJson(response.data);
+        log(itemsList.toString());
         return Right(itemsList);
       } else {
         return const Left(SearchFailure.serverFailure());

@@ -5,9 +5,9 @@ import 'package:tags/domain/core/di/injectable.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit(
-  initializerName: 'initGetIt', // default
-  preferRelativeImports: true, // default
-  asExtension: false, // default
+  initializerName: 'initGetIt', // default init
+  preferRelativeImports: true, // default true
+  asExtension: false, // default true
 )
 Future<void> configureDependencies() async {
   await initGetIt(getIt, environment: Environment.prod);
