@@ -2,9 +2,10 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tags/application/blocs/blocs.dart';
 
 import 'package:tags/application/core/constants.dart';
-import 'package:tags/application/search_url/search_bloc.dart';
+import 'package:tags/application/blocs/search_url/search_bloc.dart';
 
 class TabBarWidget extends StatelessWidget {
   const TabBarWidget({super.key});
@@ -212,10 +213,22 @@ class ThumbnailView extends StatelessWidget {
           bottom: 16,
           child: SizedBox(
             child: FloatingActionButton(
-              onPressed: () {
+              onPressed: () async {
                 if (thumbnailUrl.isEmpty) {
                   _showSnackBar(context, 'Thumbnail not fount');
-                } else {}
+                } else {
+                  context
+                      .read<DownloadImageButtonClickBloc>()
+                      .add(DownloadButtonClick(path: thumbnailUrl));
+                  //
+                  context
+                              .read<DownloadImageButtonClickBloc>()
+                              .state
+                              .isCompleted ==
+                          true
+                      ? _showSnackBar(context, 'Thumbnail downloaded')
+                      : _showSnackBar(context, 'failed');
+                }
               },
               child: const Icon(Icons.download),
             ),

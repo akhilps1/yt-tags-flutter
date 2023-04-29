@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:tags/domain/core/failures/failures.dart';
@@ -26,6 +27,7 @@ class SearchBloc extends Bloc<SearchEvent, SearchState> {
           successOrFailure: none(),
         ),
       );
+
       final Either<SearchFailure, SearchResponse> result =
           await _iSearchFacade.getVideoDetails(videoId: event.searchUrl);
       log(result.toString());

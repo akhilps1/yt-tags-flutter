@@ -15,18 +15,22 @@ class SearchImpl implements ISearchFacade {
   Future<Either<SearchFailure, SearchResponse>> getVideoDetails(
       {required String videoId}) async {
     try {
-      final Response response = await Dio(BaseOptions()).get(
+      final Response response = await Dio(BaseOptions(
+        connectTimeout: const Duration(seconds: 10),
+      )).get(
         '${ApiEndPoints.search}id=$videoId&key=${dotenv.env["API_KEY"]}',
       );
-      log(response.data.toString());
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         final itemsList = SearchResponse.fromJson(response.data);
-        log(itemsList.toString());
+
         return Right(itemsList);
       } else {
         return const Left(SearchFailure.serverFailure());
       }
+    } on DioError catch (e) {
+      log(e.toString());
+      return const Left(SearchFailure.serverFailure());
     } catch (e) {
       log(e.toString());
       return const Left(SearchFailure.clientFailure());

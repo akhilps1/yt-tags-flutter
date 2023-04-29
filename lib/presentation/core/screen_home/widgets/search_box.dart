@@ -1,7 +1,7 @@
 import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tags/application/search_url/search_bloc.dart';
+import 'package:tags/application/blocs/search_url/search_bloc.dart';
 import 'package:tags/domain/search_url/value_objects.dart';
 
 import '../../../../application/core/colors.dart';

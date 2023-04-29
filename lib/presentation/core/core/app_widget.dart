@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tags/application/blocs/download_image_button_click/download_image_button_click_bloc.dart';
 import 'package:tags/application/core/colors.dart';
-import 'package:tags/application/search_url/search_bloc.dart';
+import 'package:tags/application/blocs/search_url/search_bloc.dart';
 import 'package:tags/domain/core/di/injectable.dart';
 import 'package:tags/presentation/core/screen_home/screen_home.dart';
 
@@ -23,6 +24,8 @@ class AppWidget extends StatelessWidget {
           BlocProvider<SearchBloc>(
             create: (context) => getIt<SearchBloc>(),
           ),
+          BlocProvider<DownloadImageButtonClickBloc>(
+              create: (context) => getIt<DownloadImageButtonClickBloc>())
         ],
         child: MaterialApp(
           debugShowCheckedModeBanner: false,
