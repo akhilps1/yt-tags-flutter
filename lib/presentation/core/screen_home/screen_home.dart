@@ -27,7 +27,7 @@ class ScreenHome extends StatelessWidget {
             unselectedLabelColor: kWhite.withOpacity(0.9),
             labelStyle: const TextStyle(
               color: kWhite,
-              fontSize: 14,
+              fontSize: 13,
               fontWeight: FontWeight.bold,
             ),
             indicatorWeight: 3,

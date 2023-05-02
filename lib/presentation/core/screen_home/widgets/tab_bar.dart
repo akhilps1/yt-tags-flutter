@@ -5,7 +5,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tags/application/blocs/blocs.dart';
 
 import 'package:tags/application/core/constants.dart';
-import 'package:tags/application/blocs/search_url/search_bloc.dart';
 
 class TabBarWidget extends StatelessWidget {
   const TabBarWidget({super.key});
@@ -73,7 +72,7 @@ class TagsView extends StatelessWidget {
                       child: Text(
                         tag,
                         style: const TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.bold),
+                            fontSize: 15, fontWeight: FontWeight.w500),
                       ),
                     ),
                   );
@@ -131,7 +130,7 @@ class DescriptionView extends StatelessWidget {
                       description.toString(),
                       textAlign: TextAlign.center,
                       style: const TextStyle(
-                          fontSize: 17, fontWeight: FontWeight.bold),
+                          fontSize: 15, fontWeight: FontWeight.w500),
                     ),
                   )
                 : ksizedBox,
@@ -186,8 +185,9 @@ class ThumbnailView extends StatelessWidget {
           left: 5,
           child: Text(
             title,
+            maxLines: 3,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
         Column(

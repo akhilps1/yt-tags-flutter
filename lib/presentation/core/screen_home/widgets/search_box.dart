@@ -40,15 +40,16 @@ class SearchBox extends StatelessWidget {
                                     strokeWidth: 3,
                                   ),
                                 )
-                              : SizedBox(
-                                  height: 30,
-                                  width: 30,
-                                  child: Icon(
+                              : IconButton(
+                                  padding: EdgeInsets.zero,
+                                  constraints: const BoxConstraints(),
+                                  onPressed: () {},
+                                  icon: Icon(
                                     Icons.menu,
-                                    size: 28,
                                     color: kGrey[700],
                                   ),
-                                ),
+                                  iconSize: 28,
+                                )
                         ],
                       );
                     },
