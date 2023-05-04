@@ -1,4 +1,4 @@
-package com.example.tags
+package com.akz.tag
 
 import io.flutter.embedding.android.FlutterActivity
 

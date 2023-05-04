@@ -7,8 +7,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:tags/main.dart';
 import 'package:tags/presentation/core/core/app_widget.dart';
 
 void main() {

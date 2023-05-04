@@ -3,7 +3,7 @@ import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tags/application/blocs/blocs.dart';
-
+import 'package:shimmer/shimmer.dart';
 import 'package:tags/application/core/constants.dart';
 
 class TabBarWidget extends StatelessWidget {
@@ -27,24 +27,58 @@ class TabBarWidget extends StatelessWidget {
                   r.items!.single.snippet.thumbnails.maxres.url ?? '';
 
               title = r.items!.single.snippet.title ?? '';
+            } else {
+              showDialog(
+                  context: context,
+                  builder: (context) {
+                    return const AlertDialog(
+                      title: Text('No Details found'),
+                    );
+                  });
             }
           });
         });
-        return TabBarView(
-          children: <Widget>[
-            TagsView(
-              tags: tags,
-            ),
-            DescriptionView(
-              description: description,
-            ),
-            ThumbnailView(
-              thumbnailUrl: thumbnailUrl,
-              title: title,
-            ),
-          ],
-        );
+        return state.isLoading == true
+            ? showShimmerLayout(state)
+            : TabBarView(
+                children: <Widget>[
+                  TagsView(
+                    tags: tags,
+                  ),
+                  DescriptionView(
+                    description: description,
+                  ),
+                  ThumbnailView(
+                    thumbnailUrl: thumbnailUrl,
+                    title: title,
+                  ),
+                ],
+              );
       },
+    );
+  }
+
+  Widget showShimmerLayout(SearchState state) {
+    return Shimmer.fromColors(
+      baseColor: Colors.grey[300]!,
+      highlightColor: Colors.grey[100]!,
+      enabled: state.isLoading,
+      child: ListView.builder(
+        padding: const EdgeInsets.symmetric(horizontal: 5),
+        shrinkWrap: true,
+        itemCount: 12,
+        itemBuilder: (BuildContext context, int index) {
+          return const Card(
+            child: Padding(
+              padding: EdgeInsets.all(15),
+              child: Text(
+                '',
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
