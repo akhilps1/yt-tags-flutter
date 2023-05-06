@@ -2,13 +2,13 @@
 
 A new Flutter project.
 
-## Screenshots
+# Screenshots
 
-<img src="https://drive.google.com/file/d/13eLsZTDY8s8xzruklohuRV7A3MtwYknq/view?usp=share_link">
+<img src="./assets/images/Screenshot_2023-05-06-23-53-07-646_com.akz.tag.jpg">
 
-<img src="https://drive.google.com/file/d/13cwEYoLUBlld957hFbvyH5yBOExjhIsV/view?usp=share_link">
+<img src="./assets/images/Screenshot_2023-05-06-23-53-10-827_com.akz.tag.jpg">
 
-<img src="https://drive.google.com/file/d/13aYWV3YaMR1d092ojvTPS_1pNHFDGWD7/view?usp=share_link">
+<img src="./assets/images/Screenshot_2023-05-06-23-53-13-781_com.akz.tag.jpg">
 
 ## License
 
