@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+[Download app from Playstore](https://play.google.com/store/apps/details?id=com.akz.tag)
+
 # Screenshots
 
 <img width="250" height="420" src="./assets/images/Screenshot_2023-05-06-23-53-07-646_com.akz.tag.jpg">
