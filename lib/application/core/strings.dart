@@ -1,1 +1,10 @@
 const kBaseUrl = "https://youtube.googleapis.com/youtube/v3";
+const mNoDetailFount = 'Detais not found !';
+const mNoTagFount = 'Tags not fount';
+const mNoDescriptionFount = 'Description not fount';
+const mCopyed = 'copyed';
+const mNoThubnailFount = 'Thumbnail not fount';
+const mDownloaed = 'Downloaded';
+const mFailed = 'Failed';
+const mConnctionTimeout = 'Connection timeout';
+const mConnectionError = 'Connection Error';

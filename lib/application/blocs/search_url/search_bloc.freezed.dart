@@ -123,15 +123,25 @@ class __$$SearchButtonClickEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$SearchButtonClickEvent implements SearchButtonClickEvent {
+class _$SearchButtonClickEvent
+    with DiagnosticableTreeMixin
+    implements SearchButtonClickEvent {
   const _$SearchButtonClickEvent({required this.searchUrl});
 
   @override
   final String searchUrl;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchEvent.searchButtonClicked(searchUrl: $searchUrl)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SearchEvent.searchButtonClicked'))
+      ..add(DiagnosticsProperty('searchUrl', searchUrl));
   }
 
   @override
@@ -355,7 +365,7 @@ class __$$_SearchStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SearchState implements _SearchState {
+class _$_SearchState with DiagnosticableTreeMixin implements _SearchState {
   const _$_SearchState(
       {required this.isLoading,
       required this.isValidUrl,
@@ -375,8 +385,20 @@ class _$_SearchState implements _SearchState {
   final Option<Either<SearchFailure, SearchResponse>> successOrFailure;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'SearchState(isLoading: $isLoading, isValidUrl: $isValidUrl, searchResponse: $searchResponse, url: $url, successOrFailure: $successOrFailure)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'SearchState'))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('isValidUrl', isValidUrl))
+      ..add(DiagnosticsProperty('searchResponse', searchResponse))
+      ..add(DiagnosticsProperty('url', url))
+      ..add(DiagnosticsProperty('successOrFailure', successOrFailure));
   }
 
   @override

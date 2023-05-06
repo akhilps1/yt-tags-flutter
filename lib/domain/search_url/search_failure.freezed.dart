@@ -20,18 +20,24 @@ mixin _$SearchFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
+    required TResult Function() connectionTimeoutFailure,
+    required TResult Function() connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
+    TResult? Function()? connectionTimeoutFailure,
+    TResult? Function()? connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
+    TResult Function()? connectionTimeoutFailure,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,26 @@ mixin _$SearchFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_ConnectionTimeoutFailure value)
+        connectionTimeoutFailure,
+    required TResult Function(_ConnectionError value) connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_ConnectionTimeoutFailure value)?
+        connectionTimeoutFailure,
+    TResult? Function(_ConnectionError value)? connectionError,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_ConnectionTimeoutFailure value)? connectionTimeoutFailure,
+    TResult Function(_ConnectionError value)? connectionError,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +128,8 @@ class _$_ClientFailure implements _ClientFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
+    required TResult Function() connectionTimeoutFailure,
+    required TResult Function() connectionError,
   }) {
     return clientFailure();
   }
@@ -123,6 +139,8 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
+    TResult? Function()? connectionTimeoutFailure,
+    TResult? Function()? connectionError,
   }) {
     return clientFailure?.call();
   }
@@ -132,6 +150,8 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
+    TResult Function()? connectionTimeoutFailure,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
@@ -145,6 +165,9 @@ class _$_ClientFailure implements _ClientFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_ConnectionTimeoutFailure value)
+        connectionTimeoutFailure,
+    required TResult Function(_ConnectionError value) connectionError,
   }) {
     return clientFailure(this);
   }
@@ -154,6 +177,9 @@ class _$_ClientFailure implements _ClientFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_ConnectionTimeoutFailure value)?
+        connectionTimeoutFailure,
+    TResult? Function(_ConnectionError value)? connectionError,
   }) {
     return clientFailure?.call(this);
   }
@@ -163,6 +189,8 @@ class _$_ClientFailure implements _ClientFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_ConnectionTimeoutFailure value)? connectionTimeoutFailure,
+    TResult Function(_ConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (clientFailure != null) {
@@ -216,6 +244,8 @@ class _$_ServerFailure implements _ServerFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() clientFailure,
     required TResult Function() serverFailure,
+    required TResult Function() connectionTimeoutFailure,
+    required TResult Function() connectionError,
   }) {
     return serverFailure();
   }
@@ -225,6 +255,8 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? clientFailure,
     TResult? Function()? serverFailure,
+    TResult? Function()? connectionTimeoutFailure,
+    TResult? Function()? connectionError,
   }) {
     return serverFailure?.call();
   }
@@ -234,6 +266,8 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? clientFailure,
     TResult Function()? serverFailure,
+    TResult Function()? connectionTimeoutFailure,
+    TResult Function()? connectionError,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -247,6 +281,9 @@ class _$_ServerFailure implements _ServerFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(_ClientFailure value) clientFailure,
     required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_ConnectionTimeoutFailure value)
+        connectionTimeoutFailure,
+    required TResult Function(_ConnectionError value) connectionError,
   }) {
     return serverFailure(this);
   }
@@ -256,6 +293,9 @@ class _$_ServerFailure implements _ServerFailure {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_ClientFailure value)? clientFailure,
     TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_ConnectionTimeoutFailure value)?
+        connectionTimeoutFailure,
+    TResult? Function(_ConnectionError value)? connectionError,
   }) {
     return serverFailure?.call(this);
   }
@@ -265,6 +305,8 @@ class _$_ServerFailure implements _ServerFailure {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ClientFailure value)? clientFailure,
     TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_ConnectionTimeoutFailure value)? connectionTimeoutFailure,
+    TResult Function(_ConnectionError value)? connectionError,
     required TResult orElse(),
   }) {
     if (serverFailure != null) {
@@ -276,4 +318,238 @@ class _$_ServerFailure implements _ServerFailure {
 
 abstract class _ServerFailure implements SearchFailure {
   const factory _ServerFailure() = _$_ServerFailure;
+}
+
+/// @nodoc
+abstract class _$$_ConnectionTimeoutFailureCopyWith<$Res> {
+  factory _$$_ConnectionTimeoutFailureCopyWith(
+          _$_ConnectionTimeoutFailure value,
+          $Res Function(_$_ConnectionTimeoutFailure) then) =
+      __$$_ConnectionTimeoutFailureCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ConnectionTimeoutFailureCopyWithImpl<$Res>
+    extends _$SearchFailureCopyWithImpl<$Res, _$_ConnectionTimeoutFailure>
+    implements _$$_ConnectionTimeoutFailureCopyWith<$Res> {
+  __$$_ConnectionTimeoutFailureCopyWithImpl(_$_ConnectionTimeoutFailure _value,
+      $Res Function(_$_ConnectionTimeoutFailure) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ConnectionTimeoutFailure implements _ConnectionTimeoutFailure {
+  const _$_ConnectionTimeoutFailure();
+
+  @override
+  String toString() {
+    return 'SearchFailure.connectionTimeoutFailure()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ConnectionTimeoutFailure);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clientFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() connectionTimeoutFailure,
+    required TResult Function() connectionError,
+  }) {
+    return connectionTimeoutFailure();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clientFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? connectionTimeoutFailure,
+    TResult? Function()? connectionError,
+  }) {
+    return connectionTimeoutFailure?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clientFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? connectionTimeoutFailure,
+    TResult Function()? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeoutFailure != null) {
+      return connectionTimeoutFailure();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_ConnectionTimeoutFailure value)
+        connectionTimeoutFailure,
+    required TResult Function(_ConnectionError value) connectionError,
+  }) {
+    return connectionTimeoutFailure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_ConnectionTimeoutFailure value)?
+        connectionTimeoutFailure,
+    TResult? Function(_ConnectionError value)? connectionError,
+  }) {
+    return connectionTimeoutFailure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_ConnectionTimeoutFailure value)? connectionTimeoutFailure,
+    TResult Function(_ConnectionError value)? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionTimeoutFailure != null) {
+      return connectionTimeoutFailure(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConnectionTimeoutFailure implements SearchFailure {
+  const factory _ConnectionTimeoutFailure() = _$_ConnectionTimeoutFailure;
+}
+
+/// @nodoc
+abstract class _$$_ConnectionErrorCopyWith<$Res> {
+  factory _$$_ConnectionErrorCopyWith(
+          _$_ConnectionError value, $Res Function(_$_ConnectionError) then) =
+      __$$_ConnectionErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_ConnectionErrorCopyWithImpl<$Res>
+    extends _$SearchFailureCopyWithImpl<$Res, _$_ConnectionError>
+    implements _$$_ConnectionErrorCopyWith<$Res> {
+  __$$_ConnectionErrorCopyWithImpl(
+      _$_ConnectionError _value, $Res Function(_$_ConnectionError) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$_ConnectionError implements _ConnectionError {
+  const _$_ConnectionError();
+
+  @override
+  String toString() {
+    return 'SearchFailure.connectionError()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_ConnectionError);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() clientFailure,
+    required TResult Function() serverFailure,
+    required TResult Function() connectionTimeoutFailure,
+    required TResult Function() connectionError,
+  }) {
+    return connectionError();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? clientFailure,
+    TResult? Function()? serverFailure,
+    TResult? Function()? connectionTimeoutFailure,
+    TResult? Function()? connectionError,
+  }) {
+    return connectionError?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? clientFailure,
+    TResult Function()? serverFailure,
+    TResult Function()? connectionTimeoutFailure,
+    TResult Function()? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ClientFailure value) clientFailure,
+    required TResult Function(_ServerFailure value) serverFailure,
+    required TResult Function(_ConnectionTimeoutFailure value)
+        connectionTimeoutFailure,
+    required TResult Function(_ConnectionError value) connectionError,
+  }) {
+    return connectionError(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ClientFailure value)? clientFailure,
+    TResult? Function(_ServerFailure value)? serverFailure,
+    TResult? Function(_ConnectionTimeoutFailure value)?
+        connectionTimeoutFailure,
+    TResult? Function(_ConnectionError value)? connectionError,
+  }) {
+    return connectionError?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_ClientFailure value)? clientFailure,
+    TResult Function(_ServerFailure value)? serverFailure,
+    TResult Function(_ConnectionTimeoutFailure value)? connectionTimeoutFailure,
+    TResult Function(_ConnectionError value)? connectionError,
+    required TResult orElse(),
+  }) {
+    if (connectionError != null) {
+      return connectionError(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ConnectionError implements SearchFailure {
+  const factory _ConnectionError() = _$_ConnectionError;
 }

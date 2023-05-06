@@ -16,7 +16,7 @@ class SearchImpl implements ISearchFacade {
       {required String videoId}) async {
     try {
       final Response response = await Dio(BaseOptions(
-        connectTimeout: const Duration(seconds: 10),
+        connectTimeout: const Duration(seconds: 15),
       )).get(
         '${ApiEndPoints.search}id=$videoId&key=${dotenv.env["API_KEY"]}',
       );
@@ -29,7 +29,15 @@ class SearchImpl implements ISearchFacade {
         return const Left(SearchFailure.serverFailure());
       }
     } on DioError catch (e) {
-      log(e.toString());
+      if (e.type == DioErrorType.connectionTimeout) {
+        log(e.toString());
+        return const Left(SearchFailure.connectionTimeoutFailure());
+      }
+      if (e.type == DioErrorType.connectionError) {
+        log(e.toString());
+        return const Left(SearchFailure.connectionError());
+      }
+
       return const Left(SearchFailure.serverFailure());
     } catch (e) {
       log(e.toString());
