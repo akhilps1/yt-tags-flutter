@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:tags/application/blocs/search_url/search_bloc.dart';
-import 'package:tags/application/core/constants.dart';
+import 'package:tags/application/core/colors.dart';
 
 Widget showShimmerLayout(
     SearchState state, int? count, EdgeInsetsGeometry padding) {
   return Shimmer.fromColors(
-    baseColor: Colors.grey[400]!,
-    highlightColor: Colors.grey[200]!,
+    baseColor: kShimmerBaseLite!,
+    highlightColor: kShimmerHilight!,
     enabled: state.isLoading,
     child: ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -30,8 +30,8 @@ Widget showShimmerLayout(
 
 Widget shmmierWidgetDetails(SearchState state, Size size) {
   return Shimmer.fromColors(
-    baseColor: Colors.grey[400]!,
-    highlightColor: Colors.grey[200]!,
+    baseColor: kShimmerBaseLite!,
+    highlightColor: kShimmerHilight!,
     enabled: state.isLoading,
     child: ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -50,7 +50,7 @@ Widget shmmierWidgetDetails(SearchState state, Size size) {
               ),
             ),
             SizedBox(
-              width: size.width - 70,
+              width: size.width - 120,
               child: const Card(
                 child: Padding(
                   padding: EdgeInsets.all(8),
@@ -66,8 +66,8 @@ Widget shmmierWidgetDetails(SearchState state, Size size) {
 
 Widget shmmierWidgetThumbnail(SearchState state, Size size) {
   return Shimmer.fromColors(
-    baseColor: Colors.grey[400]!,
-    highlightColor: Colors.grey[200]!,
+    baseColor: kShimmerBaseLite!,
+    highlightColor: kShimmerHilight!,
     enabled: state.isLoading,
     child: ListView.builder(
       padding: const EdgeInsets.symmetric(horizontal: 5),
@@ -88,7 +88,7 @@ Widget shmmierWidgetThumbnail(SearchState state, Size size) {
               ),
             ),
             SizedBox(
-              width: size.width - 70,
+              width: size.width - 120,
               child: const Card(
                 child: Padding(
                   padding: EdgeInsets.all(8),

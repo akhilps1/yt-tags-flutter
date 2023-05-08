@@ -4,6 +4,8 @@ const kWhite = Colors.white;
 const kRed = Colors.red;
 const kGrey = Colors.grey;
 const kBlue = Colors.blue;
+Color? kShimmerBaseLite = Colors.grey[400];
+Color? kShimmerHilight = Colors.grey[200];
 
 // ThemeData themeDataLighte = ThemeData(
 //     scaffoldBackgroundColor: kWhite,

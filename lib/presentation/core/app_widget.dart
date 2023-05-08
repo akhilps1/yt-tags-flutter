@@ -6,6 +6,7 @@ import 'package:tags/application/core/colors.dart';
 import 'package:tags/application/blocs/search_url/search_bloc.dart';
 import 'package:tags/domain/core/di/injectable.dart';
 import 'package:tags/presentation/core/screen_home/screen_home.dart';
+import 'package:tags/presentation/core/screen_splash/screen_splash.dart';
 
 class AppWidget extends StatelessWidget {
   const AppWidget({super.key});
@@ -32,7 +33,10 @@ class AppWidget extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: kBlue,
           ),
-          home: const ScreenHome(),
+          home: const ScreenSplash(),
+          routes: {
+            '/home': (context) => const ScreenHome(),
+          },
         ),
       ),
     );
