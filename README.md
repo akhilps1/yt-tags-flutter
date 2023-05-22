@@ -1,8 +1,6 @@
 # tags
 
-A new Flutter project.
 
-[Download app from Playstore](https://play.google.com/store/apps/details?id=com.akz.tag)
 
 # Screenshots
 
